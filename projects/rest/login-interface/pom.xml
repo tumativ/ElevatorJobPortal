@@ -1,0 +1,74 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.elevator.interfaces.rs</groupId>
+	<artifactId>rest-login-interface</artifactId>
+	<packaging>jar</packaging>
+	<name>rest-login-interface</name>
+	<description>login</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${jaxrs.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+	    	<groupId>com.fasterxml.jackson.core</groupId>
+	    	<artifactId>jackson-annotations</artifactId>
+	    	<version>2.2.2</version>
+	    </dependency>
+	    <dependency>
+	    	<groupId>javax.validation</groupId>
+	    	<artifactId>validation-api</artifactId>
+	    	<version>1.1.0.Final</version>
+	    </dependency>
+	    <dependency>
+	    	<groupId>com.fasterxml.jackson.module</groupId>
+	    	<artifactId>jackson-module-jsonSchema</artifactId>
+	    	<version>2.2.2</version>
+	    </dependency>
+	    <dependency>
+	    	<groupId>com.fasterxml.jackson.core</groupId>
+	    	<artifactId>jackson-core</artifactId>
+	    	<version>2.2.2</version>
+	    </dependency>
+	    <dependency>
+	    	<groupId>com.fasterxml.jackson.core</groupId>
+	    	<artifactId>jackson-databind</artifactId>
+	    	<version>2.2.2</version>        
+	    </dependency>
+	
+	</dependencies>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.dynamicAnalysis>false</sonar.dynamicAnalysis>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.googlecode.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>0.3.7</version>
+				<executions>
+					<execution>
+						<id>generate-securitycontext</id>
+						<configuration>
+							<sourceDirectory>src/main/java/com/elevator/interfaces/schema</sourceDirectory>
+							<targetPackage>com.elevator.interfaces.rs</targetPackage>
+							<includeJsr303Annotations>true</includeJsr303Annotations>
+							<propertyWordDelimiters>_</propertyWordDelimiters>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
